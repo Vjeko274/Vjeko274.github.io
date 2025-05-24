@@ -1,0 +1,183 @@
+<!-- About Us page template: about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | ClimbUp Webshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="about-bg">
+    <header>
+    <div class="header-bg">
+        <div class="header-container">
+            <div class="logo-title">
+            <img src="images/logo.png" alt="ClimbUp Logo" class="logo" style="height:200px;vertical-align:middle;">
+            <h1>ClimbUp <span style="color:gold">Webshop</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html" style="color:gold">Home</a></li>
+                <li><a href="shop.html" style="color:gold">Shop</a></li>
+                <li><a href="about-us.html" style="color:gold">About Us</a></li>
+                <li><a href="contacts.html" style="color:gold">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon">
+            <span id="cart-count">0</span>
+            <i class="fas fa-shopping-cart"></i>
+            <div id="cart-dropdown" class="hidden">
+                <h3>Your Cart</h3>
+                <div id="cart-items"></div>
+                <div id="cart-total">Total: $0.00</div>
+                <button id="checkout-btn">Checkout</button>
+            </div>
+        </div>
+        </div>
+        </div>
+    </header>
+    <main>
+        <section class="disciplines-section discipline-section">
+            <h2>Types of Free Climbing Disciplines</h2>
+            
+            <h3>Sport Climbing</h3>
+            <p>
+                Sport climbing involves climbing routes that are protected by pre-placed bolts drilled into the rock. Climbers clip quickdraws into these bolts as they ascend. This discipline emphasizes athletic movement, endurance, and technical skill, allowing climbers to focus on challenging sequences without worrying about placing protection.
+            </p>
+            <a href="sport-climbing.html" class="learn-more">LEARN MORE ABOUT SPORT CLIMBING</a>
+            <a href="shop.html#sport-climbing" class="shop-link">SPORT CLIMBING GEAR</a>
+            
+            <h3>Bouldering</h3>
+            <p>
+                Bouldering is performed on shorter walls or natural boulders, typically up to 5 meters high, without the use of ropes. Climbers use crash pads for protection. Bouldering focuses on powerful, technical moves and problem-solving, making it accessible and social, often practiced indoors and outdoors.
+            </p>
+            <a href="bouldering.html" class="learn-more">LEARN MORE ABOUT BOULDERING</a>
+            <a href="shop.html#bouldering" class="shop-link">BOULDERING GEAR</a>
+            
+            <h3>Trad Climbing (Traditional Climbing)</h3>
+            <p>
+                Trad climbing requires climbers to place their own removable protection (such as cams and nuts) into cracks and features as they ascend. This discipline demands a strong understanding of gear placement, route finding, and self-reliance, offering a sense of adventure and exploration.
+            </p>
+            <a href="trad-climbing.html" class="learn-more">LEARN MORE ABOUT TRAD CLIMBING</a>
+            <a href="shop.html#trad-climbing" class="shop-link">TRAD-CLIMBING GEAR</a>
+            
+            <h3>Deep Water Solo Climbing</h3>
+            <p>
+                Deep water soloing is a form of free climbing performed above deep water, which acts as the safety net in case of a fall. No ropes or harnesses are used. This discipline combines the thrill of solo climbing with the safety of a water landing, often practiced on sea cliffs or overhanging rocks.
+            </p>
+            <a href="deep-water-soloing.html" class="learn-more">LEARN MORE ABOUT DEEP WATER SOLOING</a>
+            <a href="shop.html#deep-water-solo-climbing" class="shop-link">DWS GEAR</a>
+            
+            <h3 style="color:red">Free Solo Climbing</h3>
+            <p>
+                Free soloing is the most extreme form of rock climbing, performed without any ropes, harnesses, or protective equipment. The climber relies solely on their physical and mental abilities, with no margin for error. This discipline represents the purest but most dangerous form of climbing, where any mistake can be fatal.
+            </p>
+            <a href="free-solo.html" class="learn-more"><span style="color:red">LEARN MORE ABOUT FREE SOLOING<br>(EXTREME DANGER!)</span></a>
+        </section>
+    </main>
+</body>
+</html>
+<script>
+// Cart functionality
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize cart from localStorage or create empty cart
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Update cart count
+    document.getElementById('cart-count').textContent = cart.length;
+    
+    // Toggle cart dropdown
+    document.querySelector('.cart-icon').addEventListener('click', function() {
+        document.getElementById('cart-dropdown').classList.toggle('hidden');
+    });
+    
+    // Checkout button
+    document.getElementById('checkout-btn').addEventListener('click', function() {
+        // Redirect to checkout page
+        window.location.href = 'checkout.html';
+    });
+    
+    // Update cart items display
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    
+    // Clear previous items
+    cartItems.innerHTML = '';
+    
+    // Calculate total
+    let total = 0;
+    
+    // Add each item to the dropdown
+    cart.forEach((item, index) => {
+        total += item.price;
+        
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        
+        // Create option text if any
+        let optionText = '';
+        for (const [key, value] of Object.entries(item.options || {})) {
+            optionText += `${key.replace('-', ' ')}: ${value} `;
+        }
+        
+        cartItem.innerHTML = `
+            <div>
+                <div>${item.name}</div>
+                <small>${optionText}</small>
+            </div>
+            <div>
+                $${item.price.toFixed(2)}
+                <span class="remove-item" data-index="${index}">✕</span>
+            </div>
+        `;
+        
+        cartItems.appendChild(cartItem);
+    });
+    
+    // Update total
+    cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    
+    // Add remove functionality
+    document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const index = parseInt(e.target.dataset.index);
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            location.reload(); // Reload to update cart
+        });
+    });
+});
+</script>
+<section class="values-section discipline-section">
+    <h2>Our Climbing Values</h2>
+    <ul>
+        <li><strong>Safety First:</strong> We believe that safety is paramount in climbing. All our products meet or exceed industry safety standards.</li>
+        <li><strong>Environmental Responsibility:</strong> We support sustainable climbing practices and organizations dedicated to preserving climbing areas.</li>
+        <li><strong>Community:</strong> We foster an inclusive climbing community where everyone feels welcome regardless of experience level.</li>
+        <li><strong>Education:</strong> We're committed to providing educational resources to help climbers make informed decisions.</li>
+        <li><strong>Adventure:</strong> We celebrate the spirit of adventure and exploration that climbing embodies.</li>
+    </ul>
+</section>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="images/logo.png" alt="ClimbUp Logo" style="height:60px;">
+        </div>
+        <div class="footer-contact">
+            <p>Email: info@climbup.com | Phone: +385 99 123 4567</p>
+            <p>Address: Planinska 1, 10000 Zagreb, Croatia</p>
+        </div>
+        <div class="footer-social">
+            <div class="social-icons">
+                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 ClimbUp Webshop. All rights reserved.</p>
+    </div>
+</footer>

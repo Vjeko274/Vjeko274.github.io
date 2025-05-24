@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "Climbing Shoes",
+    "description": "High-performance shoes for all levels.",
+    "price": 89.99,
+    "image": "images/climbing-shoe.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Climbing Rope",
+    "description": "Durable and safe dynamic rope, 60m.",
+    "price": 129.99,
+    "image": "images/climbing-rope.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Harness",
+    "description": "Comfortable harness for sport and trad climbing.",
+    "price": 59.99,
+    "image": "images/harness.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Chalk Bag",
+    "description": "Keep your hands dry with our stylish chalk bags.",
+    "price": 14.99,
+    "image": "images/chalk-bag.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Carabiner Set",
+    "description": "Set of 5 lightweight locking carabiners.",
+    "price": 34.99,
+    "image": "images/carabiner-set.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Climbing Helmet",
+    "description": "Lightweight helmet for maximum protection.",
+    "price": 74.99,
+    "image": "images/helmet.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Belay Device",
+    "description": "Versatile belay device for safe climbing.",
+    "price": 29.99,
+    "image": "images/belay-device.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Quickdraws (Set of 6)",
+    "description": "Essential for sport climbing routes.",
+    "price": 69.99,
+    "image": "images/quickdraws.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Hiking Backpack",
+    "description": "Spacious and comfortable for long hikes.",
+    "price": 99.99,
+    "image": "images/hiking-backpack.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Trekking Poles",
+    "description": "Adjustable and lightweight for hiking support.",
+    "price": 39.99,
+    "image": "images/trekking-poles.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Headlamp",
+    "description": "Bright LED headlamp for night adventures.",
+    "price": 24.99,
+    "image": "images/headlamp.jpg"
+  },
+  {
+    "id": 12,
+    "name": "First Aid Kit",
+    "description": "Compact kit for emergencies on the trail.",
+    "price": 19.99,
+    "image": "images/first-aid-kit.jpg"
+  }
+]

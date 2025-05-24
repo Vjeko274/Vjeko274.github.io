@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimbUp Webshop</title>
+    <meta name="description" content="Your one-stop shop for climbing gear, shoes, ropes, and accessories.">
+    <meta name="keywords" content="climbing, webshop, gear, shoes, ropes, outdoor, equipment">
+    <meta name="author" content="ClimbUp Team">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-bg">
+        <div class="header-container">
+            <div class="logo-title">
+            <img src="images/logo.png" alt="ClimbUp Logo" class="logo" style="height:200px;vertical-align:middle;">
+            <h1>ClimbUp <span style="color:gold">Webshop</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html" style="color:gold">Home</a></li>
+                <li><a href="shop.html" style="color:gold">Shop</a></li>
+                <li><a href="about-us.html" style="color:gold">About Us</a></li>
+                <li><a href="contacts.html" style="color:gold">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon">
+            <span id="cart-count">0</span>
+            <i class="fas fa-shopping-cart"></i>
+            <div id="cart-dropdown" class="hidden">
+                <h3>Your Cart</h3>
+                <div id="cart-items"></div>
+                <div id="cart-total">Total: $0.00</div>
+                <button id="checkout-btn">Checkout</button>
+            </div>
+        </div>
+        </div>
+        </div>
+    </header>
+    <main>
+        <section><br><br>
+            <h2>Top Climbing Gear</h2>
+            <p style="color:black"><h3 style="font-style: italic;margin-left: 480px;">Find the best equipment for your next adventure!</h3></p>
+        <div class="sort-box">
+                <label for="sortPrice" style="color:black"><strong style="font-style: italic;">Sort by price:</strong></label>
+                <select id="sortPrice">
+                    <option value="default">Default</option>
+                    <option value="asc">Lowest first</option>
+                    <option value="desc">Highest first</option>
+                </select>
+        </div>
+            <div class="products">
+
+                <!-- SPORT CLIMBING -->
+                <h2 id="sport-climbing" style="width:100%;color:#222;margin-top:40px;">Sport Climbing</h2>
+                <div class="product">
+                    <img src="images/climbing-shoe.jpg" alt="Climbing Shoes" style="width:150px;">
+                    <h3>Climbing Shoes</h3>
+                    <p>High-performance shoes for all levels.</p>
+                    <p>Price: $89.99</p>
+                    <div class="option-group">
+                        <label for="shoe-size">Size:</label>
+                        <select id="shoe-size" class="size-select" required>
+                            <option value="">Choose size</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/climbing-rope.jpg" alt="Climbing Rope" style="width:150px;">
+                    <h3>Climbing Rope</h3>
+                    <p>Durable and safe dynamic rope, various lengths.</p>
+                    <p>Price: $129.99</p>
+                    <div class="option-group">
+                        <label for="rope-length">Length:</label>
+                        <select id="rope-length" class="size-select" required>
+                            <option value="">Choose length</option>
+                            <option value="50m">50 m</option>
+                            <option value="60m">60 m</option>
+                            <option value="70m">70 m</option>
+                            <option value="80m">80 m</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/harness.jpg" alt="Harness" style="width:150px;">
+                    <h3>Harness</h3>
+                    <p>Comfortable harness for sport and trad climbing.</p>
+                    <p>Price: $59.99</p>
+                    <div class="option-group">
+                        <label for="harness-size">Size:</label>
+                        <select id="harness-size">
+                            <option value="">Choose size</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/quickdraws.jpg" alt="Quickdraws" style="width:150px;">
+                    <h3>Quickdraws (Set of 6)</h3>
+                    <p>Essential for sport climbing routes.</p>
+                    <p>Price: $69.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/belay-device.jpg" alt="Belay Device" style="width:150px;">
+                    <h3>Belay Device</h3>
+                    <p>Versatile belay device for safe climbing.</p>
+                    <p>Price: $29.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/carabiner-set.jpg" alt="Carabiner Set" style="width:150px;">
+                    <h3>Carabiner Set</h3>
+                    <p>Set of 5 lightweight locking carabiners.</p>
+                    <p>Price: $34.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/helmet.jpg" alt="Climbing Helmet" style="width:150px;">
+                    <h3>Climbing Helmet</h3>
+                    <p>Lightweight helmet for maximum protection.</p>
+                    <p>Price: $74.99</p>
+                    <div class="option-group">
+                        <label for="helmet-size">Size:</label>
+                        <select id="helmet-size">
+                            <option value="">Choose size</option>
+                            <option value="S/M">S/M</option>
+                            <option value="M/L">M/L</option>
+                            <option value="L/XL">L/XL</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+
+                <!-- NEW: SPORT CLIMBING SPECIFIC -->
+                <div class="product">
+                    <img src="images/sport-chalk.jpg" alt="Sport Chalk" style="width:150px;">
+                    <h3>Sport Chalk</h3>
+                    <p>Premium chalk for maximum grip during long routes.</p>
+                    <p>Price: $9.99</p>
+                    <button>Add to Cart</button>
+                </div>
+
+                <!-- BOULDERING -->
+                <h2 id="bouldering" style="width:100%;color:#222;margin-top:40px;">Bouldering</h2>
+                <div class="product">
+                    <img src="images/bouldering-shoes.jpg" alt="Bouldering Shoes" style="width:150px;">
+                    <h3>Bouldering Shoes</h3>
+                    <p>Sticky rubber and aggressive fit for powerful moves.</p>
+                    <p>Price: $99.99</p>
+                    <div class="option-group">
+                        <label for="bouldering-shoe-size">Size:</label>
+                        <select id="bouldering-shoe-size" class="size-select" required>
+                            <option value="">Choose size</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/crash-pad.jpg" alt="Crash Pad" style="width:150px;">
+                    <h3>Crash Pad</h3>
+                    <p>Thick foam pad for safe landings outdoors.</p>
+                    <p>Price: $159.99</p>
+                    <div class="option-group">
+                        <label for="crash-pad-size">Size:</label>
+                        <select id="crash-pad-size" class="size-select" required>
+                            <option value="">Choose size</option>
+                            <option value="Small">Small (100x100cm)</option>
+                            <option value="Medium">Medium (120x100cm)</option>
+                            <option value="Large">Large (140x100cm)</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/chalk-bag.jpg" alt="Chalk Bag" style="width:150px;">
+                    <h3>Chalk Bag</h3>
+                    <p>Keep your hands dry with our stylish chalk bags.</p>
+                    <p>Price: $14.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/chalk-bucket.jpg" alt="Chalk Bucket" style="width:150px;">
+                    <h3>Chalk Bucket</h3>
+                    <p>Large chalk bucket for bouldering sessions.</p>
+                    <p>Price: $19.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/brush.jpg" alt="Bouldering Brush" style="width:150px;">
+                    <h3>Bouldering Brush</h3>
+                    <p>Clean holds for better grip and performance.</p>
+                    <p>Price: $7.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/finger-tape.jpg" alt="Finger Tape" style="width:150px;">
+                    <h3>Finger Tape</h3>
+                    <p>Protect your skin and support your fingers.</p>
+                    <p>Price: $5.99</p>
+                    <button>Add to Cart</button>
+                </div>
+
+                <!-- TRAD CLIMBING -->
+                <h2 id="trad-climbing" style="width:100%;color:#222;margin-top:40px;">Trad Climbing</h2>
+                <div class="product">
+                    <img src="images/trad-harness.jpg" alt="Trad Harness" style="width:150px;">
+                    <h3>Trad Harness</h3>
+                    <p>Extra gear loops for carrying protection.</p>
+                    <p>Price: $69.99</p>
+                    <div class="option-group">
+                        <label for="trad-harness-size">Size:</label>
+                        <select id="trad-harness-size" class="size-select" required>
+                            <option value="">Choose size</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/cams.jpg" alt="Cams Set" style="width:150px;">
+                    <h3>Cams Set</h3>
+                    <p>Set of 4 lightweight cams for crack protection.</p>
+                    <p>Price: $199.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/nuts.jpg" alt="Nuts Set" style="width:150px;">
+                    <h3>Nuts Set</h3>
+                    <p>Set of 10 stoppers for traditional placements.</p>
+                    <p>Price: $59.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/nut-tool.jpg" alt="Nut Tool" style="width:150px;">
+                    <h3>Nut Tool</h3>
+                    <p>Essential for removing gear after a climb.</p>
+                    <p>Price: $12.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/slings.jpg" alt="Climbing Slings" style="width:150px;">
+                    <h3>Climbing Slings</h3>
+                    <p>Durable slings for anchors and extensions.</p>
+                    <p>Price: $14.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/locking-carabiner.jpg" alt="Locking Carabiner" style="width:150px;">
+                    <h3>Locking Carabiner</h3>
+                    <p>Secure and strong for belays and anchors.</p>
+                    <p>Price: $11.99</p>
+                    <button>Add to Cart</button>
+                </div>
+
+                <!-- DEEP WATER SOLOING -->
+                <h2 id="deep-water-solo-climbing" style="width:100%;color:#222;margin-top:40px;">Deep Water Solo Climbing</h2>
+                <div class="product">
+                    <img src="images/waterproof-chalk-bag.jpg" alt="Waterproof Chalk Bag" style="width:150px;">
+                    <h3>Waterproof Chalk Bag</h3>
+                    <p>Keep your chalk dry even above water.</p>
+                    <p>Price: $24.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/approach-shoes.jpg" alt="Approach Shoes" style="width:150px;">
+                    <h3>Approach Shoes</h3>
+                    <p>Perfect for rocky approaches and wet terrain.</p>
+                    <p>Price: $79.99</p>
+                    <div class="option-group">
+                        <label for="approach-shoe-size">Size:</label>
+                        <select id="approach-shoe-size" class="size-select" required>
+                            <option value="">Choose size</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/swim-shorts.jpg" alt="Swim Shorts" style="width:150px;">
+                    <h3>Swim Shorts</h3>
+                    <p>Quick-drying shorts for deep water soloing.</p>
+                    <p>Price: $29.99</p>
+                    <div class="option-group">
+                        <label for="shorts-size">Size:</label>
+                        <select id="shorts-size" class="size-select" required>
+                            <option value="">Choose size</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/dry-bag.jpg" alt="Dry Bag" style="width:150px;">
+                    <h3>Dry Bag</h3>
+                    <p>Protect your gear from water and splashes.</p>
+                    <p>Price: $19.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/waterproof-phone-case.jpg" alt="Waterproof Phone Case" style="width:150px;">
+                    <h3>Waterproof Phone Case</h3>
+                    <p>Keep your phone safe and dry on the water.</p>
+                    <p>Price: $14.99</p>
+                    <button>Add to Cart</button>
+                </div>
+
+                <!-- GENERAL OUTDOOR/CLIMBING ACCESSORIES -->
+                <h2 style="width:100%;color:#222;margin-top:40px;">Accessories & Outdoor</h2>
+                <div class="product">
+                    <img src="images/hiking-backpack.jpg" alt="Hiking Backpack" style="width:150px;">
+                    <h3>Hiking Backpack</h3>
+                    <p>Spacious and comfortable for long hikes.</p>
+                    <p>Price: $99.99</p>
+                    <div class="option-group">
+                        <label for="backpack-size">Size:</label>
+                        <select id="backpack-size" class="size-select" required>
+                            <option value="">Choose size</option>
+                            <option value="30L">30L</option>
+                            <option value="45L">45L</option>
+                            <option value="60L">60L</option>
+                            <option value="75L">75L</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/trekking-poles.jpg" alt="Trekking Poles" style="width:150px;">
+                    <h3>Trekking Poles</h3>
+                    <p>Adjustable and lightweight for hiking support.</p>
+                    <p>Price: $39.99</p>
+                    <div class="option-group">
+                        <label for="pole-length">Length:</label>
+                        <select id="pole-length" class="size-select" required>
+                            <option value="">Choose length</option>
+                            <option value="110-130cm">110-130cm</option>
+                            <option value="120-140cm">120-140cm</option>
+                            <option value="130-150cm">130-150cm</option>
+                        </select>
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/headlamp.jpg" alt="Headlamp" style="width:150px;">
+                    <h3>Headlamp</h3>
+                    <p>Bright LED headlamp for night adventures.</p>
+                    <p>Price: $24.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/first-aid-kit.jpg" alt="First Aid Kit" style="width:150px;">
+                    <h3>First Aid Kit</h3>
+                    <p>Compact kit for emergencies on the trail.</p>
+                    <p>Price: $19.99</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const productsContainer = document.querySelector('.products');
+    const sortSelect = document.getElementById('sortPrice');
+    if (!productsContainer || !sortSelect) return;
+
+    // Collect product elements and their prices
+    const productNodes = Array.from(productsContainer.children).filter(node => node.classList && node.classList.contains('product'));
+
+    sortSelect.addEventListener('change', function() {
+        // Store the original structure - headings and their associated products
+        const structure = [];
+        const headings = Array.from(productsContainer.children).filter(node => node.tagName === 'H2');
+        
+        // Create a map of discipline sections
+        let currentHeading = null;
+        let currentProducts = [];
+        
+        // Identify all headings and their associated products
+        Array.from(productsContainer.children).forEach(node => {
+            if (node.tagName === 'H2') {
+                // If we already have a heading and products, save them
+                if (currentHeading) {
+                    structure.push({
+                        heading: currentHeading,
+                        products: [...currentProducts]
+                    });
+                }
+                // Start a new section
+                currentHeading = node;
+                currentProducts = [];
+            } else if (node.classList && node.classList.contains('product')) {
+                currentProducts.push(node);
+            }
+        });
+        
+        // Add the last section
+        if (currentHeading) {
+            structure.push({
+                heading: currentHeading,
+                products: [...currentProducts]
+            });
+        }
+        
+        // Sort products within each section
+        if (this.value === "asc" || this.value === "desc") {
+            structure.forEach(section => {
+                section.products.sort((a, b) => {
+                    const priceA = parseFloat(a.querySelector('p:last-of-type').textContent.replace(/[^0-9.]/g, ''));
+                    const priceB = parseFloat(b.querySelector('p:last-of-type').textContent.replace(/[^0-9.]/g, ''));
+                    return this.value === "asc" ? priceA - priceB : priceB - priceA;
+                });
+            });
+        }
+        
+        // Clear the container
+        productsContainer.innerHTML = '';
+        
+        // Rebuild the container with sorted products, maintaining section structure
+        structure.forEach(section => {
+            productsContainer.appendChild(section.heading);
+            section.products.forEach(product => {
+                productsContainer.appendChild(product);
+            });
+        });
+    });
+});
+</script>
+<script>
+// Cart functionality
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize cart from localStorage or create empty cart
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    updateCartDisplay();
+    
+    // Add event listeners to all "Add to Cart" buttons
+    document.querySelectorAll('.product button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const product = e.target.closest('.product');
+            const name = product.querySelector('h3').textContent;
+            const price = parseFloat(product.querySelector('p:last-of-type').textContent.replace(/[^0-9.]/g, ''));
+            const image = product.querySelector('img').src;
+            
+            // Get selected options if available
+            let options = {};
+            product.querySelectorAll('select').forEach(select => {
+                if (select.value) {
+                    options[select.id] = select.value;
+                }
+            });
+            
+            // Check if options are required but not selected
+            const requiredSelects = product.querySelectorAll('select');
+            if (requiredSelects.length > 0) {
+                let allSelected = true;
+                requiredSelects.forEach(select => {
+                    if (!select.value) allSelected = false;
+                });
+                
+                if (!allSelected) {
+                    alert('Please select all required options');
+                    return;
+                }
+            }
+            
+            // Add to cart
+            cart.push({
+                name,
+                price,
+                image,
+                options,
+                quantity: 1
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart display
+            updateCartDisplay();
+            
+            // Show confirmation
+            alert(`${name} added to cart!`);
+        });
+    });
+    
+    // Toggle cart dropdown
+    document.querySelector('.cart-icon').addEventListener('click', function() {
+        document.getElementById('cart-dropdown').classList.toggle('hidden');
+    });
+    
+    // Checkout button
+    document.getElementById('checkout-btn').addEventListener('click', function() {
+        // Redirect to checkout page
+        window.location.href = 'checkout.html';
+    });
+    
+    // Function to update cart display
+    function updateCartDisplay() {
+        const cartCount = document.getElementById('cart-count');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        
+        // Update count
+        cartCount.textContent = cart.length;
+        
+        // Update items
+        cartItems.innerHTML = '';
+        let total = 0;
+        
+        cart.forEach((item, index) => {
+            total += item.price;
+            
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            
+            // Create option text if any
+            let optionText = '';
+            for (const [key, value] of Object.entries(item.options)) {
+                optionText += `${key.replace('-', ' ')}: ${value} `;
+            }
+            
+            cartItem.innerHTML = `
+                <div>
+                    <div>${item.name}</div>
+                    <small>${optionText}</small>
+                </div>
+                <div>
+                    $${item.price.toFixed(2)}
+                    <span class="remove-item" data-index="${index}">✕</span>
+                </div>
+            `;
+            
+            cartItems.appendChild(cartItem);
+        });
+        
+        // Add remove functionality
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const index = parseInt(e.target.dataset.index);
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
+            });
+        });
+        
+        // Update total
+        cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+});
+</script>
+</body>
+</html>
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="images/logo.png" alt="ClimbUp Logo" style="height:60px;">
+        </div>
+        <div class="footer-contact">
+            <p>Email: info@climbup.com | Phone: +385 99 123 4567</p>
+            <p>Address: Planinska 1, 10000 Zagreb, Croatia</p>
+        </div>
+        <div class="footer-social">
+            <div class="social-icons">
+                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 ClimbUp Webshop. All rights reserved.</p>
+    </div>
+</footer>

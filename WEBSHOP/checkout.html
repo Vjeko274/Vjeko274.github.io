@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | ClimbUp Webshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-bg">
+            <div class="header-container">
+                <div class="logo-title">
+                    <img src="images/logo.png" alt="ClimbUp Logo" class="logo" style="height:200px;vertical-align:middle;">
+                    <h1>ClimbUp <span style="color:gold">Webshop</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="home.html" style="color:gold">Home</a></li>
+                        <li><a href="shop.html" style="color:gold">Shop</a></li>
+                        <li><a href="about-us.html" style="color:gold">About Us</a></li>
+                        <li><a href="contacts.html" style="color:gold">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <span id="cart-count">0</span>
+                    <i class="fas fa-shopping-cart"></i>
+                    <div id="cart-dropdown" class="hidden">
+                        <h3>Your Cart</h3>
+                        <div id="cart-items"></div>
+                        <div id="cart-total">Total: $0.00</div>
+                        <button id="checkout-btn">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="checkout-section">
+            <h2>Checkout</h2>
+            
+            <div class="checkout-container">
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="checkout-items"></div>
+                    <div id="checkout-subtotal">Subtotal: $0.00</div>
+                    <div id="checkout-shipping">Shipping: $5.99</div>
+                    <div id="checkout-total">Total: $0.00</div>
+                </div>
+                
+                <div class="checkout-form">
+                    <h3>Shipping Information</h3>
+                    <form id="shipping-form">
+                        <div class="form-group">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" name="fullname" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="zip">Postal Code</label>
+                                <input type="text" id="zip" name="zip" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country</option>
+                                <option value="HR">Croatia</option>
+                                <option value="SI">Slovenia</option>
+                                <option value="AT">Austria</option>
+                                <option value="IT">Italy</option>
+                                <option value="DE">Germany</option>
+                                <!-- Add more countries as needed -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <h3>Payment Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="card-name">Name on Card</label>
+                            <input type="text" id="card-name" name="card-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" name="card-number" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry">Expiry Date</label>
+                                <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" id="place-order-btn">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get cart from localStorage
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Update cart count
+            document.getElementById('cart-count').textContent = cart.length;
+            
+            // Display checkout items
+            const checkoutItems = document.getElementById('checkout-items');
+            let subtotal = 0;
+            const shipping = 5.99;
+            
+            cart.forEach(item => {
+                subtotal += item.price;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'checkout-item';
+                
+                // Create option text if any
+                let optionText = '';
+                for (const [key, value] of Object.entries(item.options)) {
+                    optionText += `${key.replace('-', ' ')}: ${value} `;
+                }
+                
+                itemElement.innerHTML = `
+                    <div class="item-details">
+                        <div class="item-name">${item.name}</div>
+                        <small>${optionText}</small>
+                    </div>
+                    <div class="item-price">$${item.price.toFixed(2)}</div>
+                `;
+                
+                checkoutItems.appendChild(itemElement);
+            });
+            
+            // Update totals
+            document.getElementById('checkout-subtotal').textContent = `Subtotal: $${subtotal.toFixed(2)}`;
+            document.getElementById('checkout-shipping').textContent = `Shipping: $${shipping.toFixed(2)}`;
+            const total = subtotal + shipping;
+            document.getElementById('checkout-total').textContent = `Total: $${total.toFixed(2)}`;
+            
+            // Handle form submission
+            const shippingForm = document.getElementById('shipping-form');
+            if (shippingForm) {
+                shippingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = {
+                        fullname: document.getElementById('fullname').value,
+                        email: document.getElementById('email').value,
+                        address: document.getElementById('address').value,
+                        city: document.getElementById('city').value,
+                        zip: document.getElementById('zip').value,
+                        country: document.getElementById('country').value,
+                        phone: document.getElementById('phone').value,
+                        cardName: document.getElementById('card-name').value,
+                        // Don't store full card details for security reasons
+                        cardNumber: document.getElementById('card-number').value.replace(/\d(?=\d{4})/g, "*"),
+                        expiry: document.getElementById('expiry').value,
+                        // Don't store CVV for security reasons
+                    };
+                    
+                    // Get cart from localStorage
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+                    const shipping = 5.99;
+                    const total = subtotal + shipping;
+                    
+                    // Create order object
+                    const order = {
+                        orderNumber: generateOrderNumber(),
+                        date: new Date().toISOString(),
+                        items: cart,
+                        subtotal: subtotal,
+                        shipping: shipping,
+                        total: total,
+                        customer: formData
+                    };
+                    
+                    // Save order to localStorage (in a real app, this would go to a server)
+                    localStorage.setItem('lastOrder', JSON.stringify(order));
+                    
+                    // Clear cart
+                    localStorage.removeItem('cart');
+                    
+                    // Redirect to thank you page
+                    window.location.href = 'order-confirmation.html';
+                    
+                    console.log("Order submitted, redirecting to confirmation page");
+                });
+            } else {
+                console.error("Shipping form not found");
+            }
+            
+            // Generate a random order number
+            function generateOrderNumber() {
+                return 'CLB-' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + 
+                       '-' + new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="images/logo.png" alt="ClimbUp Logo" style="height:60px;">
+        </div>
+        <div class="footer-contact">
+            <p>Email: info@climbup.com | Phone: +385 99 123 4567</p>
+            <p>Address: Planinska 1, 10000 Zagreb, Croatia</p>
+        </div>
+        <div class="footer-social">
+            <div class="social-icons">
+                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 ClimbUp Webshop. All rights reserved.</p>
+    </div>
+</footer>
+
+
+

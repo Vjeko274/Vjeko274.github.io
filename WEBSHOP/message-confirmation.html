@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sent | ClimbUp Webshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="confirmation-bg">
+    <header>
+        <div class="header-bg">
+            <div class="header-container">
+                <div class="logo-title">
+                    <img src="images/logo.png" alt="ClimbUp Logo" class="logo" style="height:200px;vertical-align:middle;">
+                    <h1>ClimbUp <span style="color:gold">Webshop</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="home.html" style="color:gold">Home</a></li>
+                        <li><a href="shop.html" style="color:gold">Shop</a></li>
+                        <li><a href="about-us.html" style="color:gold">About Us</a></li>
+                        <li><a href="contacts.html" style="color:gold">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <span id="cart-count">0</span>
+                    <i class="fas fa-shopping-cart"></i>
+                    <div id="cart-dropdown" class="hidden">
+                        <h3>Your Cart</h3>
+                        <div id="cart-items"></div>
+                        <div id="cart-total">Total: $0.00</div>
+                        <button id="checkout-btn">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="message-confirmation-section">
+            <div class="confirmation-container">
+                <div class="confirmation-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Thank You for Your Message!</h2>
+                <p class="confirmation-message">
+                    We've received your inquiry and appreciate you reaching out to us.
+                </p>
+                <div class="confirmation-details">
+                    <p>Our team will review your message and get back to you as soon as possible, usually within 24-48 hours.</p>
+                    <p>If your matter is urgent, please don't hesitate to call us directly at <strong>+385 99 123 4567</strong>.</p>
+                </div>
+                
+                <div class="message-summary">
+                    <h3>Your Message Summary</h3>
+                    <div class="summary-details">
+                        <p><strong>Name:</strong> <span id="sender-name"></span></p>
+                        <p><strong>Email:</strong> <span id="sender-email"></span></p>
+                        <p><strong>Message:</strong> <span id="message-preview"></span></p>
+                    </div>
+                </div>
+                
+                <div class="next-steps">
+                    <h3>What's Next?</h3>
+                    <ul>
+                        <li>You'll receive a copy of your message at the email address you provided</li>
+                        <li>A member of our team will review your inquiry</li>
+                        <li>We'll respond with the information you requested</li>
+                    </ul>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="home.html" class="btn">Return to Homepage</a>
+                    <a href="shop.html" class="btn secondary">Browse Our Shop</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="images/logo.png" alt="ClimbUp Logo" style="height:60px;">
+            </div>
+            <div class="footer-contact">
+                <p>Email: info@climbup.com | Phone: +385 99 123 4567</p>
+                <p>Address: Planinska 1, 10000 Zagreb, Croatia</p>
+            </div>
+            <div class="footer-social">
+                <div class="social-icons">
+                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 ClimbUp Webshop. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get form data from localStorage (will be set by the contact form)
+            const formData = JSON.parse(localStorage.getItem('contactFormData'));
+            
+            if (formData) {
+                // Fill in the message summary
+                document.getElementById('sender-name').textContent = formData.name;
+                document.getElementById('sender-email').textContent = formData.email;
+                
+                // Truncate message if it's too long
+                const message = formData.message;
+                const truncatedMessage = message.length > 100 ? message.substring(0, 100) + '...' : message;
+                document.getElementById('message-preview').textContent = truncatedMessage;
+            } else {
+                // If no form data is found, hide the message summary section
+                document.querySelector('.message-summary').style.display = 'none';
+            }
+            
+            // Cart functionality
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Update cart count
+            document.getElementById('cart-count').textContent = cart.length;
+            
+            // Toggle cart dropdown
+            document.querySelector('.cart-icon').addEventListener('click', function() {
+                document.getElementById('cart-dropdown').classList.toggle('hidden');
+            });
+            
+            // Checkout button
+            document.getElementById('checkout-btn').addEventListener('click', function() {
+                window.location.href = 'checkout.html';
+            });
+            
+            // Update cart items display
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            
+            // Clear previous items
+            cartItems.innerHTML = '';
+            
+            // Calculate total
+            let total = 0;
+            
+            // Add each item to the dropdown
+            cart.forEach((item, index) => {
+                total += item.price;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                
+                // Create option text if any
+                let optionText = '';
+                for (const [key, value] of Object.entries(item.options || {})) {
+                    optionText += `${key.replace('-', ' ')}: ${value} `;
+                }
+                
+                cartItem.innerHTML = `
+                    <div>
+                        <div>${item.name}</div>
+                        <small>${optionText}</small>
+                    </div>
+                    <div>
+                        $${item.price.toFixed(2)}
+                        <span class="remove-item" data-index="${index}">✕</span>
+                    </div>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            // Update total
+            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+            
+            // Add remove functionality
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const index = parseInt(e.target.dataset.index);
+                    cart.splice(index, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    location.reload(); // Reload to update cart
+                });
+            });
+        });
+    </script>
+</body>
+</html>

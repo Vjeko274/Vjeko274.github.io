@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation | ClimbUp Webshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-bg">
+            <div class="header-container">
+                <div class="logo-title">
+                    <img src="images/logo.png" alt="ClimbUp Logo" class="logo" style="height:200px;vertical-align:middle;">
+                    <h1>ClimbUp <span style="color:gold">Webshop</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="home.html" style="color:gold">Home</a></li>
+                        <li><a href="shop.html" style="color:gold">Shop</a></li>
+                        <li><a href="about-us.html" style="color:gold">About Us</a></li>
+                        <li><a href="contacts.html" style="color:gold">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="confirmation-section">
+            <div class="confirmation-container">
+                <div class="confirmation-header">
+                    <h2>Thank You for Your Order!</h2>
+                    <p>Your climbing gear will be shipped soon.</p>
+                    <div class="order-status">
+                        <span class="status-badge">Order Confirmed</span>
+                        <p>A confirmation email has been sent to your email address.</p>
+                    </div>
+                </div>
+                
+                <div class="order-details">
+                    <h3>Order Details</h3>
+                    <div class="order-info">
+                        <p><strong>Order Number:</strong> <span id="order-number"></span></p>
+                        <p><strong>Order Date:</strong> <span id="order-date"></span></p>
+                    </div>
+                    
+                    <h4>Items Ordered</h4>
+                    <div id="ordered-items" class="ordered-items"></div>
+                    
+                    <div class="order-summary">
+                        <div id="order-subtotal">Subtotal: $0.00</div>
+                        <div id="order-shipping">Shipping: $0.00</div>
+                        <div id="order-total">Total: $0.00</div>
+                    </div>
+                </div>
+                
+                <div class="customer-details">
+                    <h3>Customer Information</h3>
+                    <div class="customer-info">
+                        <div class="info-column">
+                            <h4>Shipping Address</h4>
+                            <p id="customer-name"></p>
+                            <p id="customer-address"></p>
+                            <p id="customer-city-zip"></p>
+                            <p id="customer-country"></p>
+                        </div>
+                        <div class="info-column">
+                            <h4>Contact Information</h4>
+                            <p id="customer-email"></p>
+                            <p id="customer-phone"></p>
+                        </div>
+                        <div class="info-column">
+                            <h4>Payment Method</h4>
+                            <p id="payment-method"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="next-steps">
+                    <h3>What's Next?</h3>
+                    <ol>
+                        <li>Your order is being processed</li>
+                        <li>You'll receive a shipping confirmation email when your order ships</li>
+                        <li>Expected delivery: 3-5 business days</li>
+                    </ol>
+                    <div class="action-buttons">
+                        <a href="home.html" class="btn">Continue Shopping</a>
+                        <a href="contacts.html" class="btn secondary">Need Help?</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get order from localStorage
+            const order = JSON.parse(localStorage.getItem('lastOrder'));
+            
+            if (!order) {
+                // No order found, redirect to home
+                window.location.href = 'home.html';
+                return;
+            }
+            
+            // Fill order details
+            document.getElementById('order-number').textContent = order.orderNumber;
+            document.getElementById('order-date').textContent = new Date(order.date).toLocaleDateString();
+            
+            // Fill customer info
+            document.getElementById('customer-name').textContent = order.customer.fullname;
+            document.getElementById('customer-address').textContent = order.customer.address;
+            document.getElementById('customer-city-zip').textContent = `${order.customer.city}, ${order.customer.zip}`;
+            
+            // Get country name from country code
+            const countryMap = {
+                "HR": "Croatia",
+                "SI": "Slovenia",
+                "AT": "Austria",
+                "IT": "Italy",
+                "DE": "Germany"
+            };
+            const countryName = countryMap[order.customer.country] || order.customer.country;
+            document.getElementById('customer-country').textContent = countryName;
+            
+            document.getElementById('customer-email').textContent = order.customer.email;
+            document.getElementById('customer-phone').textContent = order.customer.phone;
+            document.getElementById('payment-method').textContent = `Credit Card (${order.customer.cardNumber})`;
+            
+            // Fill ordered items
+            const orderedItems = document.getElementById('ordered-items');
+            orderedItems.innerHTML = ''; // Clear any existing content
+            
+            if (order.items && order.items.length > 0) {
+                order.items.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'ordered-item';
+                    
+                    // Create option text if any
+                    let optionText = '';
+                    if (item.options) {
+                        for (const [key, value] of Object.entries(item.options)) {
+                            optionText += `${key.replace(/[-_]/g, ' ')}: ${value} `;
+                        }
+                    }
+                    
+                    itemElement.innerHTML = `
+                        <div class="item-details">
+                            <div class="item-name">${item.name}</div>
+                            <small>${optionText}</small>
+                        </div>
+                        <div class="item-price">$${item.price.toFixed(2)}</div>
+                    `;
+                    
+                    orderedItems.appendChild(itemElement);
+                });
+            } else {
+                orderedItems.innerHTML = '<p>No items in order</p>';
+            }
+            
+            // Update totals
+            document.getElementById('order-subtotal').textContent = `Subtotal: $${order.subtotal.toFixed(2)}`;
+            document.getElementById('order-shipping').textContent = `Shipping: $${order.shipping.toFixed(2)}`;
+            document.getElementById('order-total').textContent = `Total: $${order.total.toFixed(2)}`;
+            
+            // Add event listener to "Continue Shopping" button to ensure cart is empty
+            document.querySelector('.action-buttons .btn').addEventListener('click', function() {
+                localStorage.removeItem('cart');
+            });
+        });
+    </script>
+</body>
+</html>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="images/logo.png" alt="ClimbUp Logo" style="height:60px;">
+        </div>
+        <div class="footer-contact">
+            <p>Email: info@climbup.com | Phone: +385 99 123 4567</p>
+            <p>Address: Planinska 1, 10000 Zagreb, Croatia</p>
+        </div>
+        <div class="footer-social">
+            <div class="social-icons">
+                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 ClimbUp Webshop. All rights reserved.</p>
+    </div>
+</footer>
+
+
+
+

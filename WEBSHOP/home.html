@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to ClimbUp | Your Climbing Adventure Starts Here</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="home-bg">
+    <header>
+        <div class="header-bg">
+            <div class="header-container">
+                <div class="logo-title">
+                    <img src="images/logo.png" alt="ClimbUp Logo" class="logo" style="height:200px;vertical-align:middle;">
+                    <h1>ClimbUp <span style="color:gold">Webshop</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="home.html" style="color:gold">Home</a></li>
+                        <li><a href="shop.html" style="color:gold">Shop</a></li>
+                        <li><a href="about-us.html" style="color:gold">About Us</a></li>
+                        <li><a href="contacts.html" style="color:gold">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <span id="cart-count">0</span>
+                    <i class="fas fa-shopping-cart"></i>
+                    <div id="cart-dropdown" class="hidden">
+                        <h3>Your Cart</h3>
+                        <div id="cart-items"></div>
+                        <div id="cart-total">Total: $0.00</div>
+                        <button id="checkout-btn">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Welcome to ClimbUp</h2>
+                <p class="tagline">Your Journey to New Heights Begins Here</p>
+                <div class="hero-description">
+                    <p>
+                        ClimbUp is your premier destination for high-quality climbing gear, expert advice, and a community of passionate climbers. Whether you're taking your first steps or scaling new heights, we're here to support your climbing adventure.
+                    </p>
+                    <p>
+                        Founded by passionate climbers, ClimbUp is more than just a webshop. We're a community dedicated to the art and sport of climbing in all its forms. Our mission is to provide climbers of all levels with the best equipment, knowledge, and support to pursue their vertical dreams safely and confidently.
+                    </p>
+                    <p>
+                        We carefully select every product in our inventory, ensuring quality, safety, and performance for all climbing disciplines - from bouldering and sport climbing to traditional climbing and beyond.
+                    </p>
+                </div>
+                <div class="hero-buttons">
+                    <a href="about-us.html" class="btn secondary-btn">Learn More About Climbing</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <div class="cta-container">
+                <div class="cta-content">
+                    <h2>Already a climber<br> or<br> here just for the gear?</h2>
+                    <p>
+                        Whether you're a beginner looking for your first climbing shoes or an experienced climber seeking specialized gear, ClimbUp has everything you need.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="shop.html" class="btn primary-btn">Shop All Gear</a>
+                        <a href="contacts.html" class="btn outline-btn">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="images/logo.png" alt="ClimbUp Logo" style="height:60px;">
+            </div>
+            <div class="footer-contact">
+                <p>Email: info@climbup.com | Phone: +385 99 123 4567</p>
+                <p>Address: Planinska 1, 10000 Zagreb, Croatia</p>
+            </div>
+            <div class="footer-social">
+                <div class="social-icons">
+                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 ClimbUp Webshop. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+<script>
+// Cart functionality
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize cart from localStorage or create empty cart
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Update cart count
+    document.getElementById('cart-count').textContent = cart.length;
+    
+    // Toggle cart dropdown
+    document.querySelector('.cart-icon').addEventListener('click', function() {
+        document.getElementById('cart-dropdown').classList.toggle('hidden');
+    });
+    
+    // Checkout button
+    document.getElementById('checkout-btn').addEventListener('click', function() {
+        // Redirect to checkout page
+        window.location.href = 'checkout.html';
+    });
+    
+    // Update cart items display
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    
+    // Clear previous items
+    cartItems.innerHTML = '';
+    
+    // Calculate total
+    let total = 0;
+    
+    // Add each item to the dropdown
+    cart.forEach((item, index) => {
+        total += item.price;
+        
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        
+        // Create option text if any
+        let optionText = '';
+        for (const [key, value] of Object.entries(item.options || {})) {
+            optionText += `${key.replace('-', ' ')}: ${value} `;
+        }
+        
+        cartItem.innerHTML = `
+            <div>
+                <div>${item.name}</div>
+                <small>${optionText}</small>
+            </div>
+            <div>
+                $${item.price.toFixed(2)}
+                <span class="remove-item" data-index="${index}">✕</span>
+            </div>
+        `;
+        
+        cartItems.appendChild(cartItem);
+    });
+    
+    // Update total
+    cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    
+    // Add remove functionality
+    document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const index = parseInt(e.target.dataset.index);
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            location.reload(); // Reload to update cart
+        });
+    });
+});
+</script>
