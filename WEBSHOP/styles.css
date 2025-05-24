@@ -499,13 +499,30 @@ li {
 
 /* Style for free solo link */
 .disciplines-section a[href="free-solo.html"] {
-    color: #ff6666 !important;
-    background: rgba(0, 0, 0, 0.6);
-    border-left: 3px solid #ff6666;
+    background: linear-gradient(135deg, #ff6666 0%, #cc0000 100%); /* Lighter red background */
+    color: #000000 !important;
+    border: 3px solid #000000; /* Black border for contrast */
+    font-weight: 900; /* Extra bold */
+    text-shadow: 0 1px 0 #ffffff, 0 0 2px #ffffff; /* White text shadow */
+    letter-spacing: 1px; /* Increased letter spacing */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 12px 20px; /* Larger padding */
+    font-size: 1.05em; /* Slightly larger font */
 }
 
 .disciplines-section a[href="free-solo.html"]:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background: linear-gradient(135deg, #ff8080 0%, #ff6666 100%); /* Even lighter on hover */
+    color: #000000 !important;
+    border-color: #000000;
+    text-shadow: 0 1px 0 #ffffff, 0 0 3px #ffffff; /* Enhanced white text shadow */
+}
+
+.disciplines-section a[href="free-solo.html"] span {
+    font-weight: 900;
+    display: inline-block;
+    padding: 2px 0;
+    position: relative;
+    z-index: 2;
 }
 
 /* Add a subtle vignette effect to make content stand out */
@@ -1152,22 +1169,22 @@ body.free-solo-bg::after {
     }
 }
 
-/* Updated Home Page Styles */
+/* Updated Home Page Styles - Tighter text boxes */
 .hero-section {
     position: relative;
-    padding: 80px 20px;
+    padding: 40px 30px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.8); /* Darker background for better contrast */
+    background: rgba(0, 0, 0, 0.8);
     color: white;
-    margin-bottom: 40px;
-    border-radius: 10px;
-    max-width: 1200px;
     margin: 40px auto;
+    border-radius: 10px;
+    max-width: 900px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: fit-content;
 }
 
 .hero-content {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -1264,36 +1281,35 @@ body.free-solo-bg::after {
 }
 
 .cta-section {
-    padding: 60px 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)); /* Darker gradient */
-    color: white;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 0 auto 40px auto;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin: 30px auto;
+    max-width: 900px;
 }
 
 .cta-container {
-    max-width: 900px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    width: fit-content;
     margin: 0 auto;
     text-align: center;
 }
 
+.cta-content {
+    display: inline-block;
+}
+
 .cta-content h2 {
-    font-size: 2.2rem;
     margin-bottom: 20px;
-    color: #ffe066; /* Gold color for heading */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Added text shadow */
-    font-weight: 700; /* Bold font weight */
 }
 
 .cta-content p {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    margin-bottom: 30px;
-    color: #ffffff; /* Pure white */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Added text shadow */
-    font-weight: 500; /* Medium font weight */
+    margin-bottom: 25px;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding: 0 15px;
 }
 
 .cta-buttons {
@@ -1778,4 +1794,166 @@ body.free-solo-bg .discipline-section h3 {
         max-width: 100%;
         display: block;
     }
+}
+
+/* Enhanced social media icons */
+.footer-social .social-icons a {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 50%;
+    background: #1877f2; /* Facebook blue */
+    color: white;
+    margin: 0 8px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.footer-social .social-icons a.instagram {
+    background: #fd7e14; /* Instagram orange */
+}
+
+.footer-social .social-icons a.youtube {
+    background: #ff0000; /* YouTube red */
+}
+
+.footer-social .social-icons a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(24, 119, 242, 0.4);
+    background: #2d88ff; /* Lighter blue on hover */
+}
+
+.footer-social .social-icons a.instagram:hover {
+    background: #ff9642; /* Lighter orange on hover */
+    box-shadow: 0 4px 8px rgba(253, 126, 20, 0.4);
+}
+
+.footer-social .social-icons a.youtube:hover {
+    background: #ff3333; /* Lighter red on hover */
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.4);
+}
+
+.footer-social .social-icons a i {
+    font-size: 18px;
+    text-shadow: none;
+}
+
+/* Enhanced footer styling */
+footer {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9));
+    color: #f5f5f5;
+    padding: 30px 0 20px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-logo {
+    margin-bottom: 15px;
+}
+
+.footer-logo img {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.footer-contact {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.footer-contact p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #ccc;
+    text-shadow: none;
+}
+
+.footer-social {
+    margin: 15px 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9em;
+    color: #999;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-logo, .footer-contact, .footer-social {
+        margin: 10px 0;
+    }
+}
+/* Enhanced buttons for discipline links on About Us page */
+.disciplines-section a {
+    display: inline-block;
+    margin: 8px 10px 8px 0;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.8) 100%);
+    color: #ffe066 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 224, 102, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-width: 200px;
+}
+
+.disciplines-section a.learn-more {
+    background: linear-gradient(135deg, #2d7a2d 0%, #1a5a1a 100%);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.disciplines-section a.shop-link {
+    background: linear-gradient(135deg, #f5d742 0%, #e6b800 100%);
+    color: #333 !important;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.disciplines-section a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    color: #fff !important;
+}
+
+.disciplines-section a.shop-link:hover {
+    color: #000 !important;
+    background: linear-gradient(135deg, #ffea80 0%, #f5d742 100%);
+}
+
+.disciplines-section a.learn-more:hover {
+    background: linear-gradient(135deg, #4caf50 0%, #2d7a2d 100%);
+}
+
+/* Style for free solo link */
+.disciplines-section a[href="free-solo.html"] {
+    background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+    color: #ff6666 !important;
+    border-color: rgba(255, 102, 102, 0.3);
+}
+
+.disciplines-section a[href="free-solo.html"]:hover {
+    background: linear-gradient(135deg, #a00000 0%, #8B0000 100%);
+    color: #fff !important;
 }
