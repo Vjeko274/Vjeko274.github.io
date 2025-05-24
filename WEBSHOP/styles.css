@@ -1997,3 +1997,35 @@ footer {
     background: linear-gradient(135deg, #a00000 0%, #8B0000 100%);
     color: #fff !important;
 }
+
+/* Highlight box for Alex Honnold achievement */
+.highlight-box {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.8);
+    border-left: 5px solid gold;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    max-width: fit-content;
+    backdrop-filter: blur(2px);
+}
+
+.highlight-box h4 {
+    margin-top: 0;
+    color: gold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+    font-size: 1.4em;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.highlight-box p {
+    color: gold !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9) !important;
+    font-weight: 700 !important;
+    font-size: 1.15em !important;
+    line-height: 1.8 !important;
+    margin-bottom: 0;
+}
