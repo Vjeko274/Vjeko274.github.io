@@ -2,14 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=ž, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        body {
+            background: linear-gradient(120deg, #f0f4f8 0%, #d9e7fa 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #2a3d66;
+            letter-spacing: 2px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 400px;
+            margin: 40px auto;
+        }
+        li {
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(42, 61, 102, 0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        li:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(42, 61, 102, 0.15);
+        }
+        a {
+            display: block;
+            padding: 20px;
+            color: #2a3d66;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: background 0.2s, color 0.2s;
+        }
+        a:hover {
+            background: #2a3d66;
+            color: #fff;
+        }
+        @media (max-width: 500px) {
+            ul {
+                max-width: 95vw;
+            }
+            a {
+                font-size: 1rem;
+                padding: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-<p>A</p>
-<div>B</div>
-<p>C</p>
-<h1>D</h1>
-<a href="index.html">Vrati se</a>
+    <h1>My Projects</h1>
+    <ul>
+        <li><a href="oblutak/design.html">Oblutak</a></li>
+        <li><a href="webshop/home.html">Webshop</a></li>
+        <li><a href="pp_orahovica/orahovica.html">PP_Orahovica</a></li>
+        <li><a href="pwa/pwa_calculator.html">PWA</a></li>
+    </ul>
 </body>
 </html>
